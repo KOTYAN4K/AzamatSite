@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="video_wrap">
+        <video id="videoTag" muted="muted" preload="none" loop="loop" data-resize="true" autoplay="" class="on"
+            data-video="0">
+            <source class="webmSrc" type="video/webm" src=" {% static 'video/video.mp4' %}"
+                onerror="document.getElementsByClassName('video_wrap')[0].style.display = 'none';">
+        </video>
+        <img src=" {% static '' %}" alt="">
+    </div>
+    <div class="container video_container">
+        <h1><br></h1>
+        <a href="#peculiarities">
+            <div class="btn_down"></div>
+        </a>
+
+    </div>
+</section>
+
+<section id="peculiarities">
+
+    <div class="container peculiarities">
+        <h2>Новые модели 2024 года</h2>
+        <div class="itc-slider" data-autoplay="true" data-interval="7000" data-loop="true" data-slider="itc-slider">
+            <div class="itc-slider__wrapper">
+                <div class="itc-slider__items">
+                    <div class="itc-slider__item">
+                        <img src=" {% static 'img/slider1.png' %}" alt="">
+                    </div>
+                    <div class="itc-slider__item">
+                        <img src=" {% static 'img/slider2.png' %}" alt="">
+                    </div>
+                    <div class="itc-slider__item">
+                        <img src=" {% static 'img/slider3.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+            <ol class="itc-slider__indicators">
+                <li class="itc-slider__indicator" data-slide-to="0"></li>
+                <li class="itc-slider__indicator" data-slide-to="1"></li>
+                <li class="itc-slider__indicator" data-slide-to="2"></li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+
+
+<section>
+    <div class="parallax parallax_news">
+        <div class="news_container news_container_pc">
+            <div class="news_item">
+                <div class="news_item_container">
+                    <a href="https://autopeople.ru/article/obzory/6853228.html"
+                        target="_blank">
+                        <div class="img_area"><img src=" {% static 'img/9RNMDY6JY0G4DCNH20230118061212876.400x225.jpg' %}" alt=""></div>
+                        <div class="desc_area">
+                            <p class="news_category">
+
+                            </p>Эксклюзив
+                            <h3 class="title"> Lada 2022г.
+                            </h3>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="news_item">
+                <div class="news_item_container">
+                    <a href="https://www.ferrarimoscow.ru/"
+                        target="_blank">
+                        <div class="img_area"><img src=" {% static 'img/2IX9H3SR47NRLVNW20221213122821415.400x225.jpg' %}" alt=""></div>
+                        <div class="desc_area">
+                            <p class="news_category">
+
+                            </p> Эксклюзив
+                            <h3 class="title"> Ferrari 2021г.
+                            </h3>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="news_item">
+                <div class="news_item_container">
+                    <a href="https://www.mercedes-amg.com/en/home.html"
+                        target="_blank">
+                        <div class="img_area"><img src=" {% static 'img/P0J77VJH6JRUYYWH20220727144938756.400x225.jpg' %}" alt=""></div>
+                        <div class="desc_area">
+                            <p class="news_category">
+                                ◀Эксклюзив▶
+                            </p>
+                            <h3 class="title">Mercedes-AMG 2022г.
+                            </h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="news_site">
+            <button type="button" class="more_news" data-toggle="modal" data-target="#exampleModal"></button>
+            <h4>Популярные спецпредложения
+            </h4>
+            <div class="news_site_items">
+                <ul>
+                    <li class="block_active_news">
+                        <button type="button">
+                            <div class="text">
+                                <p class="notes">[Заметки]</p>
+                                <p class="update_text">Lada Natasha — серийный кабриолет на базе «восьмерки»</p>
+                                <span></span>
+                            </div>
+                            <div class="active_news">
+                                <ul>
+                                    <li>Добавление формы</li>
+                                    <li>Изменение оформления</li>
+                                    <li>Управление данными</li>
+                                </ul>
+                            </div>
+                        </button>
+                    </li>
+                    <li class="block_active_news">
+                        <button type="button">
+                            <div class="text">
+                                <p class="notes">[Заметки]</p>
+                                <p class="update_text">FERRARI M7 - является настоящим образцом спортивной роскоши</p>
+                                <span></span>
+                            </div>
+                            <div class="active_news">
+                                <ul>
+                                    <li>Добавление формы</li>
+                                    <li>Изменение оформления</li>
+                                    <li>Управление данными</li>
+                                    <li>Упрощенная оплата</li>
+                                </ul>
+                            </div>
+                        </button>
+                    </li>
+                    <li class="block_active_news">
+                        <button type="button">
+                            <div class="text">
+                                <p class="notes">[Заметки]</p>
+                                <p class="update_text">Mercedes-AMG вместе с менеджером по продукции Маттиасом. </p>
+                                <span></span>
+                            </div>
+                            <div class="active_news">
+                                <ul>
+                                    <li>Новая аватарка</li>
+                                    <li>Хорошая адаптивность</li>
+                                    <li>Отзывы в профиле</li>
+                                </ul>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mask"></div>
+    </div>
+</section>
+<section>
+    <div class="city_background wrapper">
+        <div class="container no_margin content">
+            <h2>Модельный ряд Lada</h2>
+            <div class="services__main">
+                {% for car in cars %}
+                	<a href="{% url 'catalog' %}" class="services__main_item">
+                        <img src="{{ car.photo.url }}" alt="">
+                        <p class="services__main_text">{{ car.name }}</p>
+                        <div class="services__main_border"></div>
+                        <p class="services_desciption">Двигатель	бензин, {{ car.petrol }} л
+                            Мощность {{ car.power }} л.с
+                            Коробка передач {{ car.transmission }}
+                            Привод	{{ car.drive_unit }}
+                            Пробег {{ car.mileage }} км
+                            Руль	{{ car.rudder }}
+                             Цена {{ car.default_price }} ₽
+                            </p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

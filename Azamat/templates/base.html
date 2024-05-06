@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Регистрация</title>
+
+	<link rel="icon" href="{% static 'img/logoBDOSHOP.png' %}">
+
+    {% block links %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+	<header>
+		<div id="menu" class="container">
+			<div id="menu-bar" onclick="menuOnClick()">
+				<div id="bar1" class="bar"></div>
+				<div id="bar2" class="bar"></div>
+				<div id="bar3" class="bar"></div>
+			</div>
+			<div class="logo_block">
+				<a href="{% url 'home' %}">
+					<img src="{% static 'img/logoBDOSHOP (2).png' %}" alt="Logo" class="logo">
+				</a>
+			</div>
+			<nav onclick="menuOnClick()">
+				<ul>
+					<li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'favorite' %}">Избранные</a></li>
+                        <li><a href="{% url 'all_chat' %}">Чаты</a></li>
+                    {% endif %} 
+
+
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser or user.is_staff %}
+                            <li><a href="/admin/">Админ-панель</a></li>
+                        {% else %}
+                            <li><a href="" class="register_header register_header_login">{{user.username}}</a></li>
+                        {% endif %}
+                    <li>
+                        <form action="{% url 'account:logout' %}" method="post">{% csrf_token %}<button class="authorization register_header_logout">Выйти</button></form></li>
+                    {% else %}
+                    <li><a href="{% url 'account:registration' %}" class="register_header">Регистрация</a></li>
+					<li><a href="{% url 'account:login' %}" class="authorization ">Вход</a></li>
+                    {% endif %}
+
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<section class="header_if_fixed hidden" id="go_up"></section>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true" style="display: none; overflow-y: auto;">
+		<div class="modal-dialog" role="document">
+			<form class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Напишите ваше обращение</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+                    <label for="email">Введите почту: </label>
+                    <input type="email" class="subscription-email" id="email" required>
+                    <label for="text">Введите ваше обращение</label>
+                    <textarea id="text" required></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+					<button type="submit" class="btn btn-primary">Отправить</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<a href="#go_up" class="go_upblock go_upblock_yes">
+		<img src="{% static 'img/go_up_arrow.svg' %}" alt="">
+	</a>
+    
+    <main>
+        {% block content %}
+        	
+        {% endblock %}
+    </main>
+    <footer>
+            <div class="footer">
+            <ul class="menu">
+                <li>
+                    <a class="item">Условия использования</a>
+                </li>
+                <li>
+                    <a class="item">Конфиденциальность</a>
+                </li>
+                <li>
+                    <a href="" target="_blank" class="item">Помощь</a>
+                </li>
+                <li>
+                    <a href="" target="_blank" class="item">Вопросы и ответы</a>
+                </li>
+            </ul>
+            <div class="container no_margin content">
+                <img src="{% static 'img/logoBDOSHOP (2).png' %}" alt="Logo" class="logo">
+
+                <div class="copyright">
+
+                    <span>бла бла</span>
+
+                </div>
+            </div>
+        </div>
+        </footer>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<script src="{% static 'scripts/script.js' %}"></script>
+    <script src="{% static 'scripts/it-chef.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+
+</html>

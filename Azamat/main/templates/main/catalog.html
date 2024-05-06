@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div id="container">
+        <div class="product-details">
+            <div class="container">
+                <div class="list">
+                    {% for car in cars %}
+                        {% include 'includes/card_from_list.html' %}
+                    {% endfor %}
+                </div>
+                {% if page_obj.has_other_pages %}
+                    <article class="content">
+                        <ul class="paginator">
+                            {% if page_obj.has_previous %}
+                            	<li><a href="?page={{ page_obj.previous_page_number }}">◁</a></li>
+                            {% endif %} 
+
+                            {% for foo in paginator.page_range %}
+                                {% if page_obj.number == foo %}
+                                    <li class="current"><a href="?page={{ foo }}">{{ foo }}</a></li>
+                                {% elif foo >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                {% else %}
+                                    <li><a href="?page={{ foo }}">{{ foo }}</a></li>
+                                {% endif %} 
+
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            	<li><a href="?page={{ page_obj.next_page_number }}">▷</a></li>
+                            {% endif %}
+                        </ul>
+                    </article>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

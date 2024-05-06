@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+	<section class="full_screen">
+		<div class="bg_page_register wrapper">
+			<div class="content container" id="silver">
+				<h2>LADA VESTA</h2>
+				<p class="info_purchase">Энергичный дизайн LADA Vesta новое поколение стал еще привлекательней. Развитый рельеф салона создает современный и динамичный образ автомобиля, а новая светодиодная оптика в салоне делает его по-настоящему заметным.</p>
+				<div class='page'>
+					<a class='circle_item'>
+						<div class='circle'>
+							<div class='circle_title'>
+								<h2 class="center">Полная комплектация</h2>
+								<h3>3</h3>
+							</div>
+							<div class='circle_inner'>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purchase_bg1.jpg' %}">
+								</div>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purches_gold2.png' %}">
+								</div>
+								<div class='circle_inner__layer'>
+
+								</div>
+							</div>
+							<div class='content_shadow'></div>
+						</div>
+					</a>
+					<a class='circle_item'>
+						<div class='circle'>
+							<div class='circle_title'>
+								<h2 class="center"> Не полная комплектация</h2>
+								<h3>5</h3>
+							</div>
+							<div class='circle_inner'>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purchase_bg2.jpg' %}">
+								</div>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purches_lvlup.png' %}">
+								</div>
+							</div>
+							<div class='content_shadow'></div>
+						</div>
+					</a>
+					<a class='circle_item'>
+						<div class='circle'>
+							<div class='circle_title'>
+								<h2 class="center"> Без комплектации</h2>
+								<h3>312</h3>
+							</div>
+							<div class='circle_inner'>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purchase_bg3.jpg' %}">
+								</div>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purches_armor1.png' %}">
+								</div>
+								<div class='circle_inner__layer'>
+									<img src="{% static 'img/item_purches_armor2.png' %}">
+								</div>
+							</div>
+							<div class='content_shadow'></div>
+						</div>
+					</a>
+				</div>
+				<div class="container">
+					<div class="purchase_container">
+						<div class="purchase_sortings">
+							<div class="purchase_btn">
+								<input type="checkbox" id="in_stock">
+								<label for="in_stock">Только товар в наличии</label>
+							</div>
+							<div class="purchase_btn">
+								<button type="button" class="sell" data-toggle="modal" data-target="#exampleModal">Получить промокод 
+								</button>
+								<!--<a href="place _an_order.html" class="sell">Продать игровую валюту</a>-->
+							</div>
+						</div>
+						<div class="tablet">
+							<div class="title_tablet">
+								<div class="name">Пользователь</div>
+								<div class="description">Описание</div>
+								<div class="availability">Наличие</div>
+								<div class="price">Цена</div>
+							</div>
+							<div class="block_tablet_shadow">
+								<a href="" class="block_tablet">
+									<div class="description_phone">
+										<div class="name name_user">
+											<div class="avatar_purchase">
+												<img src="{% static 'img/another_avatar.jpeg' %}" alt="">
+											</div> Орлов Никита
+										</div>
+										<div class="description"> Полная комплектация без комплектации</div>
+										<div class="availability">
+											<div class="quantity">312</div> 
+										</div>
+									</div>
+									<div class="price">250 000 ₽</div>
+								</a>
+							</div>
+							<div class="block_tablet_shadow">
+								<a href="" class="block_tablet">
+									<div class="description_phone">
+										<div class="name name_user">
+											<div class="avatar_purchase">
+												<img src="{% static 'img/another_avatar.jpeg' %}" alt="">
+											</div> Розанов Егор 
+										</div>
+										<div class="description">LADA VESTA полная комплектация</div>
+										<div class="availability">
+											<div class="quantity">3</div> 
+										</div>
+									</div>
+								<div class="price">859 000 ₽</div>
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

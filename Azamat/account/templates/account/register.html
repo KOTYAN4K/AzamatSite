@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <section class="full_screen">
+        <div class="bg_page_register wrapper">
+            <div class="content autorizaton_form" id="registration">
+                <h2 class="center">Регистрация на торговой площадке</h2>
+                <div class="another_register">
+                    <span>Есть аккаунт?</span>
+                    <a href="{% url 'authorization' %}">Войти</a>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+
+                    {% for f in form %}
+                        {% if f.label == 'Пароль' %}
+                        <div class="password">
+                            <label class="hidden" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
+                            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                        </div>
+                        {% elif f.label == 'фото' %}
+                        <label for="{{ f.id_for_label }}" class="input__file-button">
+                            <span class="input__file-button-text">Выберите файл</span>
+                        </label>
+                        {{ f }}
+                        {% else %}
+                            <label class="hidden" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
+                            <div class="form-error">{{ f.errors }}</div>
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <div class="terms_use">
+                        <input type="checkbox" id="terms_use" required>
+                        <label for="terms_use" class="terms_use_text">Я принимаю
+                            <a href="">Правила сервера</a>,
+                            <a href="">Условия использования</a>
+                        </label>
+                    </div>
+{##}
+                    <button class="button" type="submit">Регистрация</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

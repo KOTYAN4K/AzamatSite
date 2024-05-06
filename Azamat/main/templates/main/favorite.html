@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="container">
+        <div class="product-details">
+            <div class="container">
+                <div class="list">
+                    {% if favorite %}
+
+
+                        {% for car in favorite %}
+
+                            <div class="card">
+
+                                <div class="face face1">
+                                    <div class="content">
+                                        <img src="{{ car.favorite_cars_id.photo.url }}"
+                                             alt="{{ car.favorite_cars_id.photo.name }}">
+                                        <h3>{{ car.favorite_cars_id.name }}</h3>
+                                    </div>
+                                </div>
+                                <div class="face face2">
+                                    <div class="content">
+                                        <p>◉ Мощность {{ car.favorite_cars_id.petrol }}
+                                            л. {{ car.favorite_cars_id.power }} л.с.</p>
+                                        <p>◉ {{ car.favorite_cars_id.drive_unit }} </p>
+                                        <p>◉ {{ car.favorite_cars_id.transmission }} </p>
+                                        <p>◉ {{ car.favorite_cars_id.rudder }}.</p>
+                                        <p>◉ Пробег {{ car.favorite_cars_id.mileage }}.</p>
+                                        <p>◉ Цена {{ car.favorite_cars_id.default_price }}.</p>
+                                        <div>
+                                            <a href="#">Узнать наличие</a>
+                                            <a href="{% url 'favorite_remove' car.favorite_cars_id.id %}" class="favorite">×</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h2>Тут пока ничего нет</h2>
+                    {% endif %}
+                </div>
+                {% if page_obj.has_other_pages %}
+                    <article class="content">
+                        <ul class="paginator">
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">◁</a></li>
+                            {% endif %}
+
+                            {% for foo in paginator.page_range %}
+                                {% if page_obj.number == foo %}
+                                    <li class="current"><a href="?page={{ foo }}">{{ foo }}</a></li>
+                                {% elif foo >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                {% else %}
+                                    <li><a href="?page={{ foo }}">{{ foo }}</a></li>
+                                {% endif %}
+
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                <li><a href="?page={{ page_obj.next_page_number }}">▷</a></li>
+                            {% endif %}
+                        </ul>
+                    </article>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

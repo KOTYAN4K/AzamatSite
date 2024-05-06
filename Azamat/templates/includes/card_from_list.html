@@ -1,0 +1,29 @@
+{% if car %}
+    <div class="card">
+
+        <div class="face face1">
+            <div class="content">
+                <img src="{{ car.photo.url }}" alt="{{ car.photo.name }}">
+                <h3>{{ car.name }}</h3>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <p>◉ Мощность {{ car.petrol }} л. {{ car.power }} л.с.</p>
+                <p>◉ {{ car.drive_unit }} </p>
+                <p>◉ {{ car.transmission }} </p>
+                <p>◉ {{ car.rudder }}.</p>
+                <p>◉ Пробег {{ car.mileage }}.</p>
+                <p>◉ Цена {{ car.default_price }}.</p>
+                <div>
+                    <a href="{% url 'all_chat' %}">Узнать наличие</a>
+
+                    <a href="{% url 'favorite_add' car.id %}" class="favorite">★</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h2>Тут пока ничего нет</h2>
+{% endif %}

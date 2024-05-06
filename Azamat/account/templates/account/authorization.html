@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<section class="full_screen">
+		<div class="bg_page_register wrapper">
+			<div class="content autorizaton_form">
+				<h2 class="center">Вход в личный кабинет</h2>
+				<div class="another_register">
+					<span>Нет аккаунта?</span>
+					<a href="{% url 'register' %}">Зарегистрироваться</a>
+				</div>
+				<form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+
+                    {% for f in form %}
+                        {% if f.label == 'Пароль' %}
+                        <div class="password">
+                            <label class="hidden" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
+                            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                        </div>
+                        {% else %}
+                            <label class="hidden" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
+                            <div class="form-error">{{ f.errors }}</div>
+                        {% endif %}
+
+                    {% endfor %}
+					<button class="button">Войти</button>
+				</form>
+			</div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+	<section class="full_screen">
+    <div class="bg_page_register wrapper">
+        <div class="content container" id="silver">
+            <h2>Личный кабинет</h2>
+            <div class="personal-account_container my_acc">
+                <div class="left_column">
+                    <div class="personal-accaunt_info">
+                        <div class="border_avatar">
+                            <div class="avatar">
+                                <img src="{% static 'img/NY9QOUB0Y87PV7BP20230118130138396.400x225.jpg' %}" alt="">
+                            </div>
+                            <img src="{% static 'img/avatar-border.png' %}" alt="" class="border_avatar_img">
+                        </div>
+                        <div class="account_info"></div>
+                        <p><strong>Логин:</strong></p>
+                        <p><strong>Почта:</strong></p>
+                        <p><strong>Телефон:</strong>89061209583</p>
+                        <p><strong>Дата регистрации:</strong>24 января 2020, 22:08</p>
+                    </div>
+                    <h2>Отзывы</h2>
+                    <div class="tablet reviews_block">
+                        <div class="block_tablet">
+                            <div class="avatar avatar_small">
+                                <a href="{% url 'another_accaunt' %}">
+                                    <img src="{% static 'img/logoBDOSHOP.png' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="reviews_text">
+                                <div class="reviews_text_head">
+                                    <a href="{% url 'another_accaunt' %}" class="name_user">Dogiman</a>
+                                    <p style="color: #4384D0; ">Заказ #FSADCBRX</p>
+                                    <div class="rating-result">
+                                        <span class="active"></span>
+                                        <span class="active"></span>
+                                        <span class="active"></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <p class="date">25 марта 2020</p>
+                                <p class="feedback">dsjfnsjdfn mklsdmnfkkmnks mkslckkxvdjks
+                                    dmkfdksfmk
+                                    fdsfmksdmkmk,lmcklvk
+                                    dsmkfmkkk
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" right_column">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
