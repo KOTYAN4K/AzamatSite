@@ -10,6 +10,16 @@
     <div id="container">
         <div class="product-details">
             <div class="container">
+                <form method="GET" action="{% url 'catalog' %}">
+                    <input type="text" name="q" placeholder="Поиск...">
+                    <input type="number" name="min_price" placeholder="Мин. цена">
+                    <input type="number" name="max_price" placeholder="Макс. цена">
+                    <input type="radio" name="sort_by_price" value="ascending" checked id="sort_by_price1"><label
+                        for="sort_by_price1">Сортировка по возрастанию</label>
+                    <input type="radio" name="sort_by_price" value="descending" id="sort_by_price2"><label
+                        for="sort_by_price2">Сортировка по убыванию</label>
+                    <button type="submit">Применить</button>
+                </form>
                 <div class="list">
                     {% for car in cars %}
                         {% include 'includes/card_from_list.html' %}
@@ -19,8 +29,8 @@
                     <article class="content">
                         <ul class="paginator">
                             {% if page_obj.has_previous %}
-                            	<li><a href="?page={{ page_obj.previous_page_number }}">◁</a></li>
-                            {% endif %} 
+                                <li><a href="?page={{ page_obj.previous_page_number }}">◁</a></li>
+                            {% endif %}
 
                             {% for foo in paginator.page_range %}
                                 {% if page_obj.number == foo %}
@@ -28,12 +38,12 @@
                                 {% elif foo >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
                                 {% else %}
                                     <li><a href="?page={{ foo }}">{{ foo }}</a></li>
-                                {% endif %} 
+                                {% endif %}
 
                             {% endfor %}
 
                             {% if page_obj.has_next %}
-                            	<li><a href="?page={{ page_obj.next_page_number }}">▷</a></li>
+                                <li><a href="?page={{ page_obj.next_page_number }}">▷</a></li>
                             {% endif %}
                         </ul>
                     </article>

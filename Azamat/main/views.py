@@ -71,6 +71,28 @@ class CatalogView(ListView):
         context['favorite'] = FavoriteCarsList
         return context
 
+    def get_queryset(self):
+        queryset = Cars.objects.order_by('name')
+
+        # Поиск по названию
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        # Фильтрация по цене
+        min_price = self.request.GET.get('min_price')
+        max_price = self.request.GET.get('max_price')
+        if min_price and max_price:
+            queryset = queryset.filter(default_price__gte=min_price, default_price__lte=max_price)
+
+        sort_by_price = self.request.GET.get('sort_by_price')
+        if sort_by_price == 'ascending':
+            queryset = queryset.order_by('default_price')
+        elif sort_by_price == 'descending':
+            queryset = queryset.order_by('-default_price')
+
+        return queryset
+
 
 def favorite_add(request, car_id):
     current_page = request.META.get('HTTP_REFERER')
