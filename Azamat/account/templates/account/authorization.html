@@ -13,17 +13,18 @@
 				<form method="POST">
                     {% csrf_token %}
 
-                    <div class="form-error">{{ form.non_field_errors }}</div>
+                    <div class="password">{{ form.non_field_errors }}</div>
 
                     {% for f in form %}
                         {% if f.label == 'Пароль' %}
                         <div class="password">
                             <label class="hidden" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
                             <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                            <div class="password">{{ f.errors }}</div>
                         </div>
                         {% else %}
                             <label class="hidden" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
-                            <div class="form-error">{{ f.errors }}</div>
+                            <div class="password">{{ f.errors }}</div>
                         {% endif %}
 
                     {% endfor %}

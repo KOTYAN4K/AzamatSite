@@ -29,18 +29,14 @@ class Cars(models.Model):
                                         ('автомат', 'Автомат'),
                                         ('механика', 'Механика')
                                     ), default='механика')
-    drive_unit = models.CharField(verbose_name='Привод', max_length=50,
-                                  choices=(
-                                      ('переднеприводный', 'Переднеприводный'),
-                                      ("заднеприводный", 'Заднеприводный'),
-                                      ('полноприводный', 'Полноприводный')
-                                  ), default='переднеприводный')
+    color = models.CharField(verbose_name='Цвет машины', max_length=50,null=True, blank=True)
     mileage = models.IntegerField(verbose_name='Пробег', null=True, blank=True)
-    rudder = models.CharField(verbose_name='Руль', max_length=50,
-                              choices=(
-                                  ('левый', 'Левый'),
-                                  ('правый', 'Правый')
-                              ), default='левый')
+    equipment = models.CharField(verbose_name='Комплектация', max_length=50,
+                                 choices=(
+                                     ('Комфорт', 'Левый'),
+                                     ('Спорт', 'Правый'),
+                                     ('Без комплектации', 'Правый')
+                                 ), default='Без комплектации')
     default_price = models.DecimalField(verbose_name='Цена', max_digits=20, decimal_places=2)
 
     class Meta:

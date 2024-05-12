@@ -34,7 +34,7 @@
                     <li><a href="{% url 'catalog' %}">Каталог</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'favorite' %}">Избранные</a></li>
-                        <li><a href="{% url 'all_chat' %}">Чаты</a></li>
+                        <li><a href="{% url 'chat:index' %}">Чаты</a></li>
                     {% endif %} 
 
 

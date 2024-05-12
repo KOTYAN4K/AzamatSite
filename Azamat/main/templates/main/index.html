@@ -5,12 +5,7 @@
 {% block content %}
 <section>
     <div class="video_wrap">
-        <video id="videoTag" muted="muted" preload="none" loop="loop" data-resize="true" autoplay="" class="on"
-            data-video="0">
-            <source class="webmSrc" type="video/webm" src=" {% static 'video/video.mp4' %}"
-                onerror="document.getElementsByClassName('video_wrap')[0].style.display = 'none';">
-        </video>
-        <img src=" {% static '' %}" alt="">
+
     </div>
     <div class="container video_container">
         <h1><br></h1>
@@ -176,9 +171,9 @@
                         <p class="services_desciption">Двигатель	бензин, {{ car.petrol }} л
                             Мощность {{ car.power }} л.с
                             Коробка передач {{ car.transmission }}
-                            Привод	{{ car.drive_unit }}
+                            Цвет	{{ car.color }}
                             Пробег {{ car.mileage }} км
-                            Руль	{{ car.rudder }}
+                            Комплектация	{{ car.equipment }}
                              Цена {{ car.default_price }} ₽
                             </p>
                     </a>

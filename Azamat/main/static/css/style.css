@@ -290,14 +290,15 @@ header button:hover.register_header_logout::before {
 
 
 .video_wrap {
-	max-width: 100%;
+	display: block;
+	width: 100%;
 	position: absolute;
 	z-index: -1;
-	background: var(--background-color-black-40) no-repeat;
-	height: calc(100vh - 85px);
+	background: url("../img/preview.jpg") no-repeat;
+	background-size: cover;
+	height: calc(100vh - 55px);
 	left: 50%;
 	transform: translate(-50%, 0);
-	object-fit: cover;
 	overflow: hidden;
 }
 
@@ -2856,4 +2857,3 @@ input::-webkit-inner-spin-button {
 .cards.list .card-price-name {
   display: none;
 }
-

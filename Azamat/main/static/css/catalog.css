@@ -299,6 +299,22 @@ body {
     transition: 0.5s;
 }
 
+.container .card .face.face1 .content h3{
+    margin: 0;
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    padding: 15px;
+    background: #aaaaaa;
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.5em;
+    color: black;
+}
+
+
+
 .container .card .face.face1 {
     position: relative;
     background: #666666;
@@ -332,14 +348,6 @@ body {
     max-width: 100%;
     box-sizing: border-box;
 
-}
-
-.container .card .face.face1 .content h3 {
-    margin: 10px 0 0;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    font-size: 1.5em;
 }
 
 .container .card .face.face2 {
