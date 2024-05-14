@@ -10,25 +10,21 @@
                     {% if user.is_superuser or user.is_staff %}
                         <div class="left_column">
                             <div class="personal-accaunt_info">
-                                <a href="#">
+                                {% for room in all_rooms %}
+                                	<a href="">
                                     <div class="tablet reviews_block">
                                         <div class="block_tablet">
-                                            <div class="avatar avatar_small">
-                                                <a href="{% url 'another_accaunt' %}">
-                                                    <img src=" {% static 'img/logoBDOSHOP.png' %}" alt="">
-                                                </a>
-                                            </div>
                                             <div class="reviews_text">
                                                 <div class="reviews_text_head">
-                                                    <a href="{% url 'another_accaunt' %}" class="name_user">Дима</a>
+                                                    <a href="{% url 'chat:room' room.room_name user.username %}" class="name_user">{{ room.room_name }}</a>
                                                 </div>
-                                                <p class="date"> 11 марта 2022</p>
-                                                <p class="feedback">Недостатки: слабоватая шумоизоляция
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
+                                {% endfor %}
+
+
                             </div>
                         </div>
                     {% endif %}
@@ -113,7 +109,7 @@
                 JSON.stringify({
                     'message': message,
                     'room_name': '{{room_name}}',
-                    'sender': '{{user}}',
+                    'sender': '{{username}}',
                 })
             );
         });
@@ -127,7 +123,7 @@
             var message = messageData['message'];
 
             // Empty the message input field after the message has been sent
-            if (sender == '{{user}}') {
+            if (sender == '{{username}}') {
                 document.getElementById('msg').value = '';
             }
 
