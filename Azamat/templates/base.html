@@ -34,7 +34,7 @@
                     <li><a href="{% url 'catalog' %}">Каталог</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'favorite' %}">Избранные</a></li>
-                        <li><a href="{% url 'chat:index' %}">Чаты</a></li>
+                        <li><a href="{% url 'chat:room' user.username user.username %}">Чаты</a></li>
                     {% endif %} 
 
 
@@ -129,6 +129,9 @@
 	<script src="{% static 'scripts/script.js' %}"></script>
     <script src="{% static 'scripts/it-chef.js' %}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% block scriptblock %}
+    	
+    {% endblock %}
 </body>
 
 </html>

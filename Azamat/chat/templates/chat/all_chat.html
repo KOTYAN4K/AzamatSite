@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="full_screen">
+        <div class="bg_page_register wrapper">
+            <div class="content container" id="silver">
+                <h2>Чаты</h2>
+                <div class="personal-account_container place_an_order all_chats">
+                    {% if user.is_superuser or user.is_staff %}
+                        <div class="left_column">
+                            <div class="personal-accaunt_info">
+                                <a href="#">
+                                    <div class="tablet reviews_block">
+                                        <div class="block_tablet">
+                                            <div class="avatar avatar_small">
+                                                <a href="{% url 'another_accaunt' %}">
+                                                    <img src=" {% static 'img/logoBDOSHOP.png' %}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="reviews_text">
+                                                <div class="reviews_text_head">
+                                                    <a href="{% url 'another_accaunt' %}" class="name_user">Дима</a>
+                                                </div>
+                                                <p class="date"> 11 марта 2022</p>
+                                                <p class="feedback">Недостатки: слабоватая шумоизоляция
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+
+                    <div class=" right_column">
+                        <div class="chat_container">
+                            <div class="chat-header">
+                                <div class="avatar avatar_small">
+                                    <a href="{% url 'personal_accaunt' %}">
+                                        <img src=" {% static 'img/NY9QOUB0Y87PV7BP20230118130138396.400x225.jpg' %} "
+                                             alt="">
+                                    </a>
+                                </div>
+                                <a href="{% url 'another_accaunt' %}" class="name_user">Администратор</a>
+                                <button class="btn chat-control" data-toggle="modal" data-target="#exampleModal"
+                                        title=" Пожаловаться">
+                                    <img src=" {% static 'img/exclamation-triangle-fill.svg' %} " alt="">
+                                </button>
+                            </div>
+
+                            <div class="chat-message-container">
+                                <div class="chat-message-list" id="inner">
+                                    {% for i in messages %}
+                                        <div class="message message-head" id="message-552680631">
+                                            <div class="chat-message">
+                                                <div class="media-user-name">
+                                                    <a href="{% url 'personal_accaunt' %}"
+                                                       class="name_user">{{ i.sender }}</a>
+                                                    <div class="chat-message-date" title="{{ i.created_at }}">
+                                                        {{ i.created_at }}
+                                                    </div>
+                                                </div>
+                                                <div class="message-text">{{ i.message }}</div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                            <div class="chat-form">
+                                <form action="" method="post" id="message-form">
+                                    <div class="chat-form-input">
+                                        <div class="form-group" id="comments">
+											<textarea class="form-control" name="content" cols="30" rows="1"
+                                                      placeholder="Написать..." id="msg"
+                                                      autofocus=""></textarea>
+                                            <div class="hiddendiv"></div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-form-btn">
+                                        <button type="submit" class="btn btn-gray btn-round"><img
+                                                src="{% static 'img/send.svg' %}" alt=""></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scriptblock %}
+    <script>
+        function scrollToBottom() {
+            var chatContainer = document.getElementById("chatContainer");
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws";
+        const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{room_name}}/`;
+        const socket = new WebSocket(wsEndpoint);
+
+        // Form submit listener
+        document.getElementById('message-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const message = document.getElementById('msg').value;
+            socket.send(
+                JSON.stringify({
+                    'message': message,
+                    'room_name': '{{room_name}}',
+                    'sender': '{{user}}',
+                })
+            );
+        });
+
+        // Response from consumer on the server
+        socket.addEventListener("message", (event) => {
+            const messageData = JSON.parse(event.data)['message'];
+            console.log(messageData);
+
+            var sender = messageData['sender'];
+            var message = messageData['message'];
+
+            // Empty the message input field after the message has been sent
+            if (sender == '{{user}}') {
+                document.getElementById('msg').value = '';
+            }
+
+            // Append the message to the chatbox
+            var messageDiv = document.querySelector('.chat-message-list');
+
+            messageDiv.innerHTML += '<div class="message message-head" id="message-552680631"><div class="chat-message"><div class="media-user-name"><a href="{% url 'personal_accaunt' %}" class="name_user">' + sender + '</a><div class="chat-message-date" title="created">только что</div></div><div class="message-text">' + message + '</div></div></div>';
+            scrollToBottom();
+        });
+
+        socket.onopen = (event) => {
+            console.log("WebSocket connection opened!");
+        };
+
+        socket.onclose = (event) => {
+            console.log("WebSocket connection closed!");
+        };
+
+    </script>
+{% endblock %}

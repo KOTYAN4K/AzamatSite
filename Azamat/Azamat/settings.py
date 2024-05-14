@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'main',
     'account',
     'chat',
@@ -138,3 +139,11 @@ LOGIN_URL = 'account:login'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+ASGI_APPLICATION = "Azamat.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+}
+
+CORS_ALLOW_ALL_ORIGINS = True
