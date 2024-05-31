@@ -22,12 +22,10 @@ def message_view(request, room_name, username):
         new_message.save()
 
     get_messages = Message.objects.filter(room=get_room)
-    all_rooms = Room.objects.all()
 
     context = {
-        'all_rooms': all_rooms,
         "messages": get_messages,
-        "username": username,
+        "user": username,
         "room_name": room_name,
     }
     return render(request, 'chat/all_chat.html', context)

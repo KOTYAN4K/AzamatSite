@@ -16,7 +16,8 @@
                 <p>◉ Пробег {{ car.mileage }}.</p>
                 <p>◉ Цена {{ car.default_price }}.</p>
                 <div>
-                    <a href="{% url 'chat:room' user.username user.username %}">Узнать наличие</a>
+                    <a href="">Узнать наличие</a>
+
                     <a href="{% url 'favorite_add' car.id %}" class="favorite">★</a>
                 </div>
 
